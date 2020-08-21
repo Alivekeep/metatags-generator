@@ -1,10 +1,39 @@
 {
-  "name": "metatags-generator",
+  "name": "@d0v/metatags-generator",
   "description": "Metatags generator for Node.js applications. Must have for perfect SEO.",
-  "keywords": ["nodejs", "metatags", "seo", "html generator", "typescript"],
+  "keywords": [
+    "nodejs",
+    "metatags",
+    "seo",
+    "html generator",
+    "typescript"
+  ],
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/main.js",
+  "types": "lib/main.d.ts",
+  "files": [
+    "lib/",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": "git@github.com:Alivekeep/metatags-generator.git",
   "author": "Alivekeep <2fed.tcp@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf ./lib",
+    "build": "npm run clean && tsc",
+    "start:dev": "nodemon .",
+    "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.6.0",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "tslint": "^6.1.3",
+    "typescript": "^4.0.2"
+  }
 }
