@@ -1,0 +1,10 @@
+{
+  "name": "metatags-generator",
+  "description": "Metatags generator for Node.js applications. Must have for perfect SEO.",
+  "keywords": ["nodejs", "metatags", "seo", "html generator", "typescript"],
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Alivekeep/metatags-generator.git",
+  "author": "Alivekeep <2fed.tcp@gmail.com>",
+  "license": "MIT"
+}
