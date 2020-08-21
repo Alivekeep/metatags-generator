@@ -9,7 +9,7 @@ const data = [
 
 const icons = ['/path/icon-72x72.png', '/path/icon-180x180.png'];
 
-const aa = generator
+generator
   .setRobots('index, nofollow')
   .setShortLink('https://mail.ru/asas')
   .setLocalVersion('en_US', 'https://vk.com', true)
@@ -36,5 +36,3 @@ const aa = generator
     creator: '@muratgozel'
   })
   .build();
-
-console.log(aa);

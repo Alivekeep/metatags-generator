@@ -25,7 +25,7 @@ export const microsoftTileIconSizes = ['70x70', '150x150', '310x150', '310x310']
 /**
  * Microsoft Tiles naming map
  */
-export const microsoftTilesNamingMap = {
+export const microsoftTilesNamingMap: { [key: string]: string } = {
   '70x70': 'msapplication-square70x70logo',
   '150x150': 'msapplication-square150x150logo',
   '310x310': 'msapplication-square310x310logo',

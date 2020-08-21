@@ -16,7 +16,7 @@ export class HtmlGenerator {
   /**
    * Creates an instance of the element for the specified tag
    */
-  public generateElement(tag: string, attributes: object, content?): string {
+  public generateElement(tag: string, attributes: object, content?: object | string): string {
     if (!tags[tag]) throw new Error(`Can't found HTML tag`);
 
     const payload: ElementPayload = {

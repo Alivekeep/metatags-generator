@@ -1,4 +1,5 @@
 import { BreadcrumbData } from './common-interfaces/breadcrumb-data.interface';
+import { ImageInput } from './common-interfaces/image-input.interface';
 import { MetatagsDocument } from './common-interfaces/metatags-document.interface';
 import { PageMeta } from './common-interfaces/page-meta.interface';
 import { ProjectMeta } from './common-interfaces/project-meta.interface';
@@ -47,13 +48,13 @@ export class MetadataGenerator {
    * List of raw meta tags (head)
    * @private
    */
-  private elementsOfHead: string[] = [];
+  private readonly elementsOfHead: string[] = [];
 
   /**
    * List of raw meta tags (body)
    * @private
    */
-  private elementsOfBody: string[] = [];
+  private readonly elementsOfBody: string[] = [];
 
   constructor() {
     this.htmlGenerator = new HtmlGenerator();
@@ -71,7 +72,7 @@ export class MetadataGenerator {
   /**
    * Set robots
    */
-  public setRobots(content): MetadataGenerator {
+  public setRobots(content: string): MetadataGenerator {
     this.add('meta', { name: 'robots', content });
 
     return this;
@@ -80,7 +81,7 @@ export class MetadataGenerator {
   /**
    * Set short link
    */
-  public setShortLink(url): MetadataGenerator {
+  public setShortLink(url: string): MetadataGenerator {
     this.add('link', { rel: 'shortlink', href: url, type: 'text/html' });
 
     return this;
@@ -336,7 +337,7 @@ export class MetadataGenerator {
   /**
    * Add meta tag to stage
    */
-  public add(tag: string, attrs: object, content?): MetadataGenerator {
+  public add(tag: string, attrs: object, content?: object | string): MetadataGenerator {
     if (headTags.includes(tag)) {
       this.elementsOfHead.push(this.htmlGenerator.generateElement(tag, attrs, content));
     } else {
@@ -372,7 +373,7 @@ export class MetadataGenerator {
    * Format images
    * @private
    */
-  private static formatImageInput(input) {
+  private static formatImageInput(input: string | ImageInput) {
     if (typeof input === 'string') {
       return { url: input };
     } else if (input !== null && typeof input === 'object') {
