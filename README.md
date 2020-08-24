@@ -1,19 +1,36 @@
 # Meta tags generator
 
+[![NPM version][npm-image]][npm-url]
+[![npm download][download-image]][download-url]
+
+[npm-image]: https://img.shields.io/npm/v/metatags-generator.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/metatags-generator
+[download-image]: https://img.shields.io/npm/dm/metatags-generator.svg?style=flat-square
+[download-url]: https://npmjs.org/package/metatags-generator
+
 SEO meta tags generator for Node.js applications. Written in TypeScript. Zero dependencies.
+
+### Installation
+
+```shell script
+npm install metatags-generator
+```
+
+### API
+Look at /docs/
 
 ### How to use
 
 Typescript
 
 ```typescript
-import { MetadataGenerator } from '@d0v/metatags-generator';
+import { MetadataGenerator } from 'metatags-generator';
 ```
 
 Pure Nodejs
 
 ```js
-const MetadataGenerator = require('@d0v/metatags-generator');
+const MetadataGenerator = require('metatags-generator');
 ```
 
 ```js
@@ -69,7 +86,7 @@ Then you can use HTML output for inject in your page.
 
 Install dependencies
 ```shell script
-npm i express pug @d0v/metatags-generator
+npm i express pug metatags-generator
 ```
 
 Create files:
@@ -77,7 +94,7 @@ Create files:
 index.js
 ```js
 const express = require('express');
-const { MetadataGenerator } = require('@d0v/metatags-generator');
+const { MetadataGenerator } = require('metatags-generator');
 
 const app = express();
 const port = 3000;
@@ -149,3 +166,7 @@ html(lang="en", prefix="og: http://ogp.me/ns#")
 		h1 Hello World
 
 ```
+
+
+### Licence
+[MIT](./LICENSE)

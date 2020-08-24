@@ -1,0 +1,345 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>metatags-generator</title>
+	<meta name="description" content="Documentation for metatags-generator">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">metatags-generator</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>metatags-generator</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#meta-tags-generator" id="meta-tags-generator" style="color: inherit; text-decoration: none;">
+					<h1>Meta tags generator</h1>
+				</a>
+				<p><a href="https://npmjs.org/package/metatags-generator"><img src="https://img.shields.io/npm/v/metatags-generator.svg?style=flat-square" alt="NPM version"></a>
+				<a href="https://npmjs.org/package/metatags-generator"><img src="https://img.shields.io/npm/dm/metatags-generator.svg?style=flat-square" alt="npm download"></a></p>
+				<p>SEO meta tags generator for Node.js applications. Written in TypeScript. Zero dependencies.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h3>Installation</h3>
+				</a>
+				<pre><code class="language-shell">npm install metatags-generator</code></pre>
+				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+					<h3>API</h3>
+				</a>
+				<p>Look at /src/metadata-generator.ts</p>
+				<a href="#how-to-use" id="how-to-use" style="color: inherit; text-decoration: none;">
+					<h3>How to use</h3>
+				</a>
+				<p>Typescript</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { MetadataGenerator } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;metatags-generator&#x27;</span>;</code></pre>
+				<p>Pure Nodejs</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> MetadataGenerator = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;metatags-generator&#x27;</span>);</code></pre>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> settings = {
+  <span class="hljs-attr">structuredData</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">androidChromeIcons</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">msTags</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">safariTags</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">appleTags</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">openGraphTags</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">twitterTags</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">facebookTags</span>: <span class="hljs-literal">true</span>
+};
+
+<span class="hljs-keyword">const</span> generator = <span class="hljs-keyword">new</span> MetadataGenerator(settings);
+<span class="hljs-keyword">const</span> preparedData = generator
+  .setRobots(<span class="hljs-string">&#x27;index, follow&#x27;</span>)
+  .setShortLink(<span class="hljs-string">&#x27;https://bit.ly/1ahy&#x27;</span>)
+  .setLocalVersion(<span class="hljs-string">&#x27;en_US&#x27;</span>, <span class="hljs-string">&#x27;https://example.com&#x27;</span>, <span class="hljs-literal">true</span>)
+  .setAlternateHandheld(<span class="hljs-string">&#x27;https://m.example.com&#x27;</span>)
+  .setProjectMeta({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Example app&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://example.com&#x27;</span>,
+    <span class="hljs-attr">logo</span>: <span class="hljs-string">&#x27;/path/logo.png&#x27;</span>,
+    <span class="hljs-attr">primaryColor</span>: <span class="hljs-string">&#x27;#333333&#x27;</span>,
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>
+  })
+  .setPageMeta({
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Home&#x27;</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;This is home page&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://example.com&#x27;</span>,
+    <span class="hljs-attr">image</span>: <span class="hljs-string">&#x27;/path/cover.jpg&#x27;</span>,
+    <span class="hljs-attr">keywords</span>: <span class="hljs-string">&#x27;site, app, example, pug&#x27;</span>,
+    <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en_US&#x27;</span>
+  })
+  .openGraphData(<span class="hljs-string">&#x27;video.movie&#x27;</span>)
+  .setCanonical(<span class="hljs-string">&#x27;https://example.com&#x27;</span>)
+  .breadcrumb(data)
+  .setIcons(icons)
+  .setTwitterMeta({
+    <span class="hljs-attr">card</span>: <span class="hljs-string">&#x27;summary_large_image&#x27;</span>,
+    <span class="hljs-attr">site</span>: <span class="hljs-string">&#x27;@nytimesbits&#x27;</span>,
+    <span class="hljs-attr">creator</span>: <span class="hljs-string">&#x27;@nickbilton&#x27;</span>
+  })
+  .setFacebookMeta(<span class="hljs-number">5233</span>)
+  .build();</code></pre>
+				<p>Then you can use HTML output for inject in your page.</p>
+				<a href="#express--pug-example" id="express--pug-example" style="color: inherit; text-decoration: none;">
+					<h3>Express + Pug example</h3>
+				</a>
+				<p>Install dependencies</p>
+				<pre><code class="language-shell">npm i express pug metatags-generator</code></pre>
+				<p>Create files:</p>
+				<p>index.js</p>
+				<pre><code class="language-js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">const</span> { MetadataGenerator } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;metatags-generator&#x27;</span>);
+
+<span class="hljs-keyword">const</span> app = express();
+<span class="hljs-keyword">const</span> port = <span class="hljs-number">3000</span>;
+
+app.set(<span class="hljs-string">&#x27;views&#x27;</span>, <span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>`</span>);
+app.set(<span class="hljs-string">&#x27;view engine&#x27;</span>, <span class="hljs-string">&#x27;pug&#x27;</span>);
+
+<span class="hljs-keyword">const</span> generator = <span class="hljs-keyword">new</span> MetadataGenerator();
+
+<span class="hljs-keyword">const</span> data = [
+  { <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Home&#x27;</span>, <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://example.com&#x27;</span> },
+  { <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;About&#x27;</span>, <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://example.com/about&#x27;</span> }
+];
+
+<span class="hljs-keyword">const</span> icons = [<span class="hljs-string">&#x27;/path/icon-72x72.png&#x27;</span>, <span class="hljs-string">&#x27;/path/icon-180x180.png&#x27;</span>];
+
+<span class="hljs-keyword">const</span> preparedData = generator
+  .setRobots(<span class="hljs-string">&#x27;index&#x27;</span>)
+  .setRobots(<span class="hljs-string">&#x27;index, follow&#x27;</span>)
+  .setShortLink(<span class="hljs-string">&#x27;https://bit.ly/1ahy&#x27;</span>)
+  .setLocalVersion(<span class="hljs-string">&#x27;en_US&#x27;</span>, <span class="hljs-string">&#x27;https://example.com&#x27;</span>, <span class="hljs-literal">true</span>)
+  .setAlternateHandheld(<span class="hljs-string">&#x27;https://m.example.com&#x27;</span>)
+  .setProjectMeta({
+    <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;Example app&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://example.com&#x27;</span>,
+    <span class="hljs-attr">logo</span>: <span class="hljs-string">&#x27;/path/logo.png&#x27;</span>,
+    <span class="hljs-attr">primaryColor</span>: <span class="hljs-string">&#x27;#333333&#x27;</span>,
+    <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&#x27;#ffffff&#x27;</span>
+  })
+  .setPageMeta({
+    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;Home&#x27;</span>,
+    <span class="hljs-attr">description</span>: <span class="hljs-string">&#x27;This is home page&#x27;</span>,
+    <span class="hljs-attr">url</span>: <span class="hljs-string">&#x27;https://example.com&#x27;</span>,
+    <span class="hljs-attr">image</span>: <span class="hljs-string">&#x27;/path/cover.jpg&#x27;</span>,
+    <span class="hljs-attr">keywords</span>: <span class="hljs-string">&#x27;site, app, example, pug&#x27;</span>,
+    <span class="hljs-attr">locale</span>: <span class="hljs-string">&#x27;en_US&#x27;</span>
+  })
+  .openGraphData(<span class="hljs-string">&#x27;video.movie&#x27;</span>)
+  .setCanonical(<span class="hljs-string">&#x27;https://example.com&#x27;</span>)
+  .breadcrumb(data)
+  .setIcons(icons)
+  .setTwitterMeta({
+    <span class="hljs-attr">card</span>: <span class="hljs-string">&#x27;summary_large_image&#x27;</span>,
+    <span class="hljs-attr">site</span>: <span class="hljs-string">&#x27;@nytimesbits&#x27;</span>,
+    <span class="hljs-attr">creator</span>: <span class="hljs-string">&#x27;@nickbilton&#x27;</span>
+  })
+  .setFacebookMeta(<span class="hljs-number">5233</span>)
+  .build();
+
+app.get(<span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+  res.render(<span class="hljs-string">&#x27;index&#x27;</span>, { <span class="hljs-attr">head</span>: preparedData.head, <span class="hljs-attr">body</span>: preparedData.body });
+});
+
+app.listen(port, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Example app listening at http://localhost:<span class="hljs-subst">${port}</span>`</span>);
+});
+</code></pre>
+				<p>index.pug</p>
+				<pre><code class="language-html">doctype html
+html(lang=&quot;en&quot;, prefix=&quot;og: http://ogp.me/ns#&quot;)
+    head
+        | !{head}
+    body
+        | !{body}
+        h1 Hello World
+</code></pre>
+				<a href="#licence" id="licence" style="color: inherit; text-decoration: none;">
+					<h3>Licence</h3>
+				</a>
+				<p><a href="./LICENSE">MIT</a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_add_params_interface_.html">&quot;common-<wbr>interfaces/add-<wbr>params.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_breadcrumb_data_interface_.html">&quot;common-<wbr>interfaces/breadcrumb-<wbr>data.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_element_payload_interface_.html">&quot;common-<wbr>interfaces/element-<wbr>payload.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_html_tag_interface_.html">&quot;common-<wbr>interfaces/html-<wbr>tag.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_image_input_interface_.html">&quot;common-<wbr>interfaces/image-<wbr>input.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_metatags_document_interface_.html">&quot;common-<wbr>interfaces/metatags-<wbr>document.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_opengraph_types_interface_.html">&quot;common-<wbr>interfaces/opengraph-<wbr>types.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_page_meta_interface_.html">&quot;common-<wbr>interfaces/page-<wbr>meta.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_parsed_query_interface_.html">&quot;common-<wbr>interfaces/parsed-<wbr>query.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_project_meta_interface_.html">&quot;common-<wbr>interfaces/project-<wbr>meta.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_safari_mobile_app_interface_.html">&quot;common-<wbr>interfaces/safari-<wbr>mobile-<wbr>app.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_settings_interface_.html">&quot;common-<wbr>interfaces/settings.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_common_interfaces_twitter_meta_interface_.html">&quot;common-<wbr>interfaces/twitter-<wbr>meta.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_default_settings_.html">&quot;dictionaries/default-<wbr>settings&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_head_tags_.html">&quot;dictionaries/head-<wbr>tags&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_html_tags_.html">&quot;dictionaries/html-<wbr>tags&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_icons_.html">&quot;dictionaries/icons&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_image_size_reg_exp_.html">&quot;dictionaries/image-<wbr>size-<wbr>reg-<wbr>exp&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_mimes_.html">&quot;dictionaries/mimes&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_dictionaries_void_tags_.html">&quot;dictionaries/void-<wbr>tags&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_element_.html">&quot;html-<wbr>generator/element&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_escape_html_.html">&quot;html-<wbr>generator/escape-<wbr>html&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_generator_.html">&quot;html-<wbr>generator/generator&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_html_tags_.html">&quot;html-<wbr>generator/html-<wbr>tags&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_parse_query_.html">&quot;html-<wbr>generator/parse-<wbr>query&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_tag_.html">&quot;html-<wbr>generator/tag&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_text_.html">&quot;html-<wbr>generator/text&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_html_generator_void_tags_.html">&quot;html-<wbr>generator/void-<wbr>tags&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_main_.html">&quot;main&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_metadata_generator_.html">&quot;metadata-<wbr>generator&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

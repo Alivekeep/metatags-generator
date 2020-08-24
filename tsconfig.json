@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "declaration": true,
-		"declarationMap": false,
+    "declarationMap": false,
     "noImplicitAny": false,
     "removeComments": false,
     "emitDecoratorMetadata": true,
@@ -13,16 +13,16 @@
     "outDir": "./lib",
     "strictNullChecks": true,
     "noUnusedLocals": true,
-		"skipLibCheck": true,
-		"moduleResolution": "Node",
-		"diagnostics": true,
-		"pretty": true,
-		"alwaysStrict": true
-	},
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "skipLibCheck": true,
+    "moduleResolution": "Node",
+    "diagnostics": true,
+    "pretty": true,
+    "alwaysStrict": true
+  },
+  "typedocOptions": {
+    "mode": "modules",
+    "out": "docs"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
