@@ -31,7 +31,8 @@
     "build": "npm run clean && tsc",
     "start:dev": "nodemon .",
     "gen:doc": "typedoc",
-    "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'"
+    "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'",
+    "prepublish": "npm run build"
   },
   "engines": {
     "node": ">=10.0.0"
