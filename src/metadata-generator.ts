@@ -191,7 +191,7 @@ export class MetadataGenerator {
     if (this.settings.openGraphTags) {
       this.add('meta', { property: 'og:type', content: type });
 
-      if (duration) {
+      if (type === OpengraphTypes.movie && duration) {
         this.add('meta', { property: 'video:duration', content: duration });
       }
     }
