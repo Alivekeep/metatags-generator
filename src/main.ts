@@ -7,3 +7,4 @@ export { PageMeta } from './common-interfaces/page-meta.interface';
 export { SafariMobileApp } from './common-interfaces/safari-mobile-app.interface';
 export { TwitterMeta } from './common-interfaces/twitter-meta.interface';
 export { BreadcrumbData } from './common-interfaces/breadcrumb-data.interface';
+export { OpengraphTypes } from './common-interfaces/opengraph-types.interface';
