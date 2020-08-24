@@ -5,25 +5,25 @@ export class ProjectMeta {
   /**
    * Site name
    */
-  public name: string;
+  public name?: string;
 
   /**
    * Site url
    */
-  public url: string;
+  public url?: string;
 
   /**
    * Site logo
    */
-  public logo: string;
+  public logo?: string;
 
   /**
    * Site primary color
    */
-  public primaryColor: string;
+  public primaryColor?: string;
 
   /**
    * Site background color
    */
-  public backgroundColor: string;
+  public backgroundColor?: string;
 }
