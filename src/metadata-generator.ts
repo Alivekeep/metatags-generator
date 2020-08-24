@@ -412,6 +412,21 @@ export class MetadataGenerator {
   }
 
   /**
+   * Clear all cached metadata
+   */
+  public clear(): MetadataGenerator {
+    this.document = {
+      body: '',
+      head: ''
+    };
+
+    this.elementsOfHead.clear();
+    this.elementsOfBody.clear();
+
+    return this;
+  }
+
+  /**
    * Format images
    * @private
    */
