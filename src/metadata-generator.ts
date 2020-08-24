@@ -178,9 +178,13 @@ export class MetadataGenerator {
   /**
    * Custom Open Graph metadata
    */
-  public openGraphData(type: OpengraphTypes): MetadataGenerator {
+  public openGraphData(type: OpengraphTypes, duration?: number): MetadataGenerator {
     if (this.settings.openGraphTags) {
       this.add('meta', { property: 'og:type', content: type });
+
+      if (duration) {
+        this.add('meta', { property: 'video:duration', content: duration });
+      }
     }
 
     return this;
