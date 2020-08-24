@@ -71,7 +71,16 @@ export class MetadataGenerator {
     this.elementsOfHead = new Map();
     this.elementsOfBody = new Map();
 
+    this.disableMicrosoftAppConfig();
+  }
+
+  /**
+   * Disable Microsoft app config
+   */
+  public disableMicrosoftAppConfig(): MetadataGenerator {
     this.add('meta', { name: 'msapplication-config', content: 'none' });
+
+    return this;
   }
 
   /**
