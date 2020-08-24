@@ -13,6 +13,11 @@ export class PageMeta {
   public description?: string;
 
   /**
+   * Page keywords
+   */
+  public keywords?: string;
+
+  /**
    * Page url
    */
   public url?: string;

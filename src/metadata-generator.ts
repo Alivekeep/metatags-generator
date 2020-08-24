@@ -1,6 +1,8 @@
+import { AddParams } from './common-interfaces/add-params.interface';
 import { BreadcrumbData } from './common-interfaces/breadcrumb-data.interface';
 import { ImageInput } from './common-interfaces/image-input.interface';
 import { MetatagsDocument } from './common-interfaces/metatags-document.interface';
+import { OpengraphTypes } from './common-interfaces/opengraph-types.interface';
 import { PageMeta } from './common-interfaces/page-meta.interface';
 import { ProjectMeta } from './common-interfaces/project-meta.interface';
 import { SafariMobileApp } from './common-interfaces/safari-mobile-app.interface';
@@ -48,13 +50,13 @@ export class MetadataGenerator {
    * List of raw meta tags (head)
    * @private
    */
-  private readonly elementsOfHead: string[] = [];
+  private readonly elementsOfHead: Map<string, string>;
 
   /**
    * List of raw meta tags (body)
    * @private
    */
-  private readonly elementsOfBody: string[] = [];
+  private readonly elementsOfBody: Map<string, string>;
 
   constructor() {
     this.htmlGenerator = new HtmlGenerator();
@@ -65,6 +67,9 @@ export class MetadataGenerator {
       body: '',
       head: ''
     };
+
+    this.elementsOfHead = new Map();
+    this.elementsOfBody = new Map();
 
     this.add('meta', { name: 'msapplication-config', content: 'none' });
   }
@@ -111,6 +116,15 @@ export class MetadataGenerator {
   }
 
   /**
+   * Set mobile version URL
+   */
+  public setAlternateHandheld(url: string): MetadataGenerator {
+    this.add('link', { rel: 'alternate', media: 'handheld', href: url });
+
+    return this;
+  }
+
+  /**
    * Set project metadata
    */
   public setProjectMeta(obj: ProjectMeta): MetadataGenerator {
@@ -136,16 +150,15 @@ export class MetadataGenerator {
 
     if (obj.logo && obj.logo.length) {
       if (this.settings.structuredData) {
-        this.elementsOfBody.push(
-          this.htmlGenerator.generateJSONLD(
-            {
-              '@type': 'Organization',
-              logo: obj.logo,
-              url: obj.url
-            },
-            { 'data-mptype': 'sdorg' }
-          )
+        const generatedData: string = this.htmlGenerator.generateJSONLD(
+          {
+            '@type': 'Organization',
+            logo: obj.logo,
+            url: obj.url
+          },
+          { 'data-mptype': 'sdorg' }
         );
+        this.elementsOfBody.set(generatedData, generatedData);
       }
     }
 
@@ -157,6 +170,17 @@ export class MetadataGenerator {
       if (this.settings.msTags) {
         this.add('meta', { name: 'msapplication-TileColor', content: obj.backgroundColor });
       }
+    }
+
+    return this;
+  }
+
+  /**
+   * Custom Open Graph metadata
+   */
+  public openGraphData(type: OpengraphTypes): MetadataGenerator {
+    if (this.settings.openGraphTags) {
+      this.add('meta', { property: 'og:type', content: type });
     }
 
     return this;
@@ -194,7 +218,7 @@ export class MetadataGenerator {
    * Set Facebook meta tags
    */
   public setFacebookMeta(appID: string | number): MetadataGenerator {
-    this.add('meta', { property: 'fb:app_id', content: appID });
+    this.add('meta', { property: 'fb:app_id', content: String(appID) });
 
     return this;
   }
@@ -228,17 +252,17 @@ export class MetadataGenerator {
 
     const content = {
       '@type': 'BreadcrumbList',
-      itemListElement: data.map(function(obj, index) {
-        return {
-          '@type': 'ListItem',
-          position: index + 1,
-          name: obj.title,
-          item: obj.url
-        };
-      })
+      itemListElement: data.map((obj, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: obj.title,
+        item: obj.url
+      }))
     };
 
-    this.elementsOfBody.push(this.htmlGenerator.generateJSONLD(content, { 'data-mptype': 'sdb' }));
+    const generatedData: string = this.htmlGenerator.generateJSONLD(content, { 'data-mptype': 'sdb' });
+
+    this.elementsOfBody.set(generatedData, generatedData);
 
     return this;
   }
@@ -248,8 +272,11 @@ export class MetadataGenerator {
    */
   public setPageMeta(obj: PageMeta): MetadataGenerator {
     if (obj.title && obj.title.length) {
+      this.add('title', {}, obj.title);
+
       if (this.settings.openGraphTags) {
         this.add('meta', { property: 'og:title', content: obj.title });
+        this.add('meta', { name: 'title', content: obj.title });
       }
 
       if (this.settings.twitterTags) {
@@ -269,6 +296,10 @@ export class MetadataGenerator {
       }
     }
 
+    if (obj.keywords && obj.keywords.length) {
+      this.add('meta', { name: 'keywords', content: obj.keywords });
+    }
+
     if (obj.url && obj.url.length) {
       if (this.settings.openGraphTags) {
         this.add('meta', { property: 'og:url', content: obj.url });
@@ -280,6 +311,7 @@ export class MetadataGenerator {
 
       if (this.settings.openGraphTags) {
         this.add('meta', { property: 'og:image', content: imageObject.url });
+        this.add('link', { rel: 'image_src', content: imageObject.url });
 
         if (imageObject.width) {
           this.add('meta', { property: 'og:image:width', content: imageObject.width });
@@ -337,11 +369,17 @@ export class MetadataGenerator {
   /**
    * Add meta tag to stage
    */
-  public add(tag: string, attrs: object, content?: object | string): MetadataGenerator {
+  public add(tag: string, attrs: AddParams, content?: object | string): MetadataGenerator {
     if (headTags.includes(tag)) {
-      this.elementsOfHead.push(this.htmlGenerator.generateElement(tag, attrs, content));
+      this.elementsOfHead.set(
+        `${tag}-${attrs.name || attrs.property || attrs.rel}-${attrs.media || attrs.sizes}`,
+        this.htmlGenerator.generateElement(tag, attrs, content)
+      );
     } else {
-      this.elementsOfBody.push(this.htmlGenerator.generateElement(tag, attrs, content));
+      this.elementsOfBody.set(
+        `${tag}-${attrs.name || attrs.property || attrs.rel}-${attrs.media || attrs.sizes}`,
+        this.htmlGenerator.generateElement(tag, attrs, content)
+      );
     }
 
     return this;
@@ -363,8 +401,8 @@ export class MetadataGenerator {
    * Build meta tags
    */
   public build(): MetatagsDocument {
-    this.document.head = this.elementsOfHead.sort().join(`\n`);
-    this.document.body = this.elementsOfBody.sort().join(`\n`);
+    this.document.head = Array.from(this.elementsOfHead.values()).sort().join(`\n`);
+    this.document.body = Array.from(this.elementsOfBody.values()).sort().join(`\n`);
 
     return this.document;
   }

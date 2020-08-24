@@ -1,38 +1,9 @@
-import { MetadataGenerator } from './metadata-generator';
+export { MetadataGenerator } from './metadata-generator';
 
-const generator = new MetadataGenerator();
-
-const data = [
-  { title: 'Home', url: 'https://www.frondjs.org' },
-  { title: 'About', url: 'https://www.frondjs.org/about' }
-];
-
-const icons = ['/path/icon-72x72.png', '/path/icon-180x180.png'];
-
-generator
-  .setRobots('index, nofollow')
-  .setShortLink('https://mail.ru/asas')
-  .setLocalVersion('en_US', 'https://vk.com', true)
-  .setProjectMeta({
-    name: 'Sample App',
-    url: 'https://frondjs.org',
-    logo: '/path/logo.png',
-    primaryColor: '#333333',
-    backgroundColor: '#ffffff'
-  })
-  .setPageMeta({
-    title: 'Home',
-    description: 'This is home.',
-    url: 'https://frondjs.org',
-    image: '/path/cover.jpg',
-    locale: 'tr_TR'
-  })
-  .setCanonical('https://www.frondjs.org/home')
-  .breadcrumb(data)
-  .setIcons(icons)
-  .setTwitterMeta({
-    card: 'summary_large_image',
-    site: '@twitter',
-    creator: '@muratgozel'
-  })
-  .build();
+export { MetatagsDocument } from './common-interfaces/metatags-document.interface';
+export { Settings } from './common-interfaces/settings.interface';
+export { ProjectMeta } from './common-interfaces/project-meta.interface';
+export { PageMeta } from './common-interfaces/page-meta.interface';
+export { SafariMobileApp } from './common-interfaces/safari-mobile-app.interface';
+export { TwitterMeta } from './common-interfaces/twitter-meta.interface';
+export { BreadcrumbData } from './common-interfaces/breadcrumb-data.interface';
