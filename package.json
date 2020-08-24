@@ -1,6 +1,7 @@
 {
   "name": "metatags-generator",
-  "description": "Meta tags generator for Node.js applications. Must have for perfect SEO.",
+  "version": "1.0.1",
+  "description": "SEO meta tags generator for Node.js applications. Written in TypeScript. Zero dependencies.",
   "keywords": [
     "nodejs",
     "meta tags",
@@ -8,7 +9,6 @@
     "html generator",
     "typescript"
   ],
-  "version": "1.0.0",
   "main": "lib/main.js",
   "types": "lib/main.d.ts",
   "files": [
@@ -16,8 +16,15 @@
     "README.md",
     "LICENSE"
   ],
-  "repository": "git@github.com:Alivekeep/metatags-generator.git",
-  "author": "Alivekeep <2fed.tcp@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alivekeep/metatags-generator.git"
+  },
+  "author": "Alivekeep <2fed.tcp@gmail.com> (https://github.com/Alivekeep)",
+  "homepage": "https://github.com/Alivekeep/metatags-generator",
+  "bugs": {
+    "url": "https://github.com/Alivekeep/metatags-generator/issues"
+  },
   "license": "MIT",
   "scripts": {
     "clean": "rimraf ./lib",
