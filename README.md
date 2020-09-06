@@ -19,6 +19,11 @@ npm install metatags-generator
 ### API
 Look at /docs/
 
+### Benchmarking
+In general, generator can make ~10k records per seconds and use ~80Mb memory for this. That's mean meta tags generation not be bottleneck with up to 10k RPS.
+You can recheck in `./benchmark` directory.
+
+
 ### How to use
 
 Typescript
@@ -45,8 +50,9 @@ const settings = {
   facebookTags: true
 };
 
-const generator = new MetadataGenerator(settings);
+const generator = new MetadataGenerator();
 const preparedData = generator
+  .configure(settings)
   .setRobots('index, follow')
   .setShortLink('https://bit.ly/1ahy')
   .setLocalVersion('en_US', 'https://example.com', true)

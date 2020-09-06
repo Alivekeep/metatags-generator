@@ -1,6 +1,6 @@
 {
   "name": "metatags-generator",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "SEO meta tags generator for Node.js applications. Written in TypeScript. Zero dependencies.",
   "keywords": [
     "nodejs",
@@ -28,8 +28,11 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf ./lib",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc --build tsconfig.json",
+    "build:benchmark": "rimraf ./dist && tsc --build tsconfig.benchmark.json",
     "start:dev": "nodemon .",
+    "start:benchmark:dev": "node ./benchmark/",
+    "start:benchmark:prod": "node ./dist/benchmark/main.js",
     "gen:doc": "typedoc",
     "lint": "tslint -p tsconfig.json -c tslint.json 'src/**/*.ts'",
     "prepublish": "npm run build"
